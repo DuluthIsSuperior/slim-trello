@@ -9,6 +9,8 @@ CREATE TABLE people(
     job_title VARCHAR(30) NOT NULL
 );
 
+INSERT INTO people VALUES(1, 'Kyle', 'Dick', 'Admin');
+
 DROP TABLE IF EXISTS tasks;
 CREATE TABLE tasks(
 	task_id INT PRIMARY KEY,
