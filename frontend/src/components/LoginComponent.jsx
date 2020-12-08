@@ -46,7 +46,7 @@ class LoginComponent extends Component{
     }
 
     handleChange = (event) =>{
-            let nam = event.target.lastName;
+            let nam = event.target.name;
             let val = event.target.value;
             this.setState({[nam]: val});
         }
@@ -60,10 +60,11 @@ class LoginComponent extends Component{
                         <label>Enter Last Name</label>
                         <input 
                         type="text"
-                        lastName="lastName"
+                        name="lastName"
                         placeholder="Last Name"
                         value={this.state.lastName} 
                         onChange={this.handleChange} 
+                        required
                         />
                     </div>
                     <div>

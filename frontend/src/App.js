@@ -1,7 +1,7 @@
 import './App.css';
 import LoginComponent from './components/LoginComponent';
 import TrelloComponent from './components/TrelloComponent';
-import { Router, Link } from "@reach/router";
+import { Router } from "@reach/router";
 
 function App() {
   return (
