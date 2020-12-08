@@ -6,6 +6,7 @@ backend/HELP.md
 backend/pom.xml
 backend/mvnw*
 backend/target
+backend/src/main/resources/application.properties
 
 frontend/package-lock.json
 frontend/package.json
