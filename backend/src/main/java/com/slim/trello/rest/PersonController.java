@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class PeopleController {
+public class PersonController {
     private final MyDAO myDAO;
 
     @Autowired
-    public PeopleController(@Qualifier("personDAO") MyDAO myDAO) {
+    public PersonController(@Qualifier("personDAO") MyDAO myDAO) {
         this.myDAO = myDAO;
     }
 
