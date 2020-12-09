@@ -9,7 +9,7 @@ CREATE TABLE people(
     job_title VARCHAR(30) NOT NULL
 );
 
-INSERT INTO people VALUES(1, 'Kyle', 'Dick', 'Admin');
+SELECT * FROM people;
 
 DROP TABLE IF EXISTS tasks;
 CREATE TABLE tasks(
@@ -20,8 +20,9 @@ CREATE TABLE tasks(
 
 DROP TABLE IF EXISTS tasks_assigned;
 CREATE TABLE tasks_assigned(
-	person_id INT,
-    task_id INT,
+	id INT PRIMARY KEY NOT NULL,
+	person_id INT NOT NULL,
+    task_id INT NOT NULL,
     CONSTRAINT fk_person FOREIGN KEY (person_id) REFERENCES people(person_id),
     CONSTRAINT fk_task FOREIGN KEY (task_id) REFERENCES tasks(task_id)
 ) AUTO_INCREMENT = 1;
