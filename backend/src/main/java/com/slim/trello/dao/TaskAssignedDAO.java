@@ -1,20 +1,18 @@
 package com.slim.trello.dao;
 
-import com.slim.trello.entity.Person;
+import com.slim.trello.entity.TaskAssigned;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@Repository
-public class PersonDAO implements MyDAO<Person> {
+public class TaskAssignedDAO implements MyDAO<TaskAssigned> {
     private final EntityManager entityManager;
 
     @Autowired
-    public PersonDAO(EntityManager entityManager) {
+    public TaskAssignedDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -25,21 +23,21 @@ public class PersonDAO implements MyDAO<Person> {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional
-    public List<Person> findAll() {
-        return getSession().createQuery("from Person").getResultList();
+    public List<TaskAssigned> findAll() {
+        return getSession().createQuery("from TaskAssigned").getResultList();
     }
 
     @Override
     @Transactional
-    public Person findByID(int ID) {
-        return getSession().get(Person.class, ID);
+    public TaskAssigned findByID(int ID) {
+        return getSession().get(TaskAssigned.class, ID);
     }
 
     @Override
     @Transactional
-    public boolean update(Person person) {
+    public boolean update(TaskAssigned taskAssigned) {
         try {
-            getSession().saveOrUpdate(person);
+            getSession().saveOrUpdate(taskAssigned);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,17 +47,17 @@ public class PersonDAO implements MyDAO<Person> {
 
     @Override
     @Transactional
-    public boolean save(Person person) {
-        person.setId(0);
-        return update(person);
+    public boolean save(TaskAssigned taskAssigned) {
+        taskAssigned.setId(0);
+        return update(taskAssigned);
     }
 
     @Override
     @Transactional
     public boolean deleteByID(int ID) {
-        Person p = findByID(ID);
+        TaskAssigned p = findByID(ID);
         if (p == null) {
-            System.out.println("Person not found");
+            System.out.println("TaskAssigned not found");
             return false;
         }
         try {
