@@ -1,44 +1,46 @@
 import React, { Component } from 'react';
 import { navigate } from "@reach/router";
+import loginService from '../service/loginService';
 
 class LoginComponent extends Component{
     constructor(props){
         super(props)
 
         this.state={
-            //use userlastName & password to iterate through the login
+            //use last_name to iterate through the login
             id: "",
-            lastName: "",
+            last_name: "",
             login: []
         }
 
-        // this.getLoginData=this.getLoginData.bind(this)
-        // this.getUserData=this.getUserData.bind(this)
+        this.getLoginData=this.getLoginData.bind(this)
+        this.getUserData=this.getUserData.bind(this)
     }
 
-    // componentDidMount(){
-    //     this.getLoginData()
-    // }
+    componentDidMount(){
+        this.getLoginData()
+    }
 
-    // getLoginData(){
-    //     loginService.getAllUsers()
-    //         .then(value => {
-    //             this.setState({login: value.data})
-    //         })
-    // }
+    getLoginData(){
+        console.log("Hello World!")
+        loginService.retrieveAllPeople()
+            .then(value => {
+                this.setState({login: value.data})
+                console.log("!", value.data)
+            })
+    }
 
     getUserData(event){
         event.preventDefault()
         console.log(this.state.login);
-        console.log(this.state.lastName);
         for(var i =0; i <= this.state.login.length - 1; i++){
-            if (this.state.lastName !== this.state.login[i].lastName){
+            if (this.state.last_name !== this.state.login[i].last_name){
                 continue;
             } 
-            else if (this.state.lastName === this.state.login[i].lastName){
+            else if (this.state.last_name === this.state.login[i].last_name){
                 console.log(true);
-                navigate(`/trello/${this.state.lastName}`);
-                return navigate(`/trello/${this.state.lastName}`);
+                navigate(`/dashboard`);
+                return navigate(`/dashboard`);
             }
             
         }
@@ -60,9 +62,9 @@ class LoginComponent extends Component{
                         <label>Enter Last Name</label>
                         <input 
                         type="text"
-                        name="lastName"
+                        name="last_name"
                         placeholder="Last Name"
-                        value={this.state.lastName} 
+                        value={this.state.last_name} 
                         onChange={this.handleChange} 
                         required
                         />

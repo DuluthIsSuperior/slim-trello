@@ -5,6 +5,7 @@ class TrelloComponent extends Component {
     constructor (props) {
         super(props)
         this.state = {
+            lastName: "",
             persons: []
         }
     this.refreshTasksRegistry = this.refreshTasksRegistry.bind(this)
@@ -42,7 +43,7 @@ class TrelloComponent extends Component {
 
     updateTasksClicked(id) {
         console.log('Update Tasks Clicked')
-        this.props.history.push(`/Tasks/${id}`)
+        this.props.history.push(`/trello/`)
     }
 
     render(){
@@ -67,6 +68,7 @@ class TrelloComponent extends Component {
                                         <td>{tasks.id}</td>
                                         <td>{tasks.firstName} {tasks.lastName}</td>
                                         {/* <td>{}</td>
+                                        //user.tasksAssigned
                                         <td><button className="btn btn-dark" onClick={() => this.deleteTasksClicked(tasks.id, tasks.firstName, tasks.lastName)}>-</button></td>
                                         <td><button className="btn btn-info" onClick={() => this.updateTasksClicked(tasks.id, tasks.jobTitle)}>Update</button></td> */}
                                     </tr>
