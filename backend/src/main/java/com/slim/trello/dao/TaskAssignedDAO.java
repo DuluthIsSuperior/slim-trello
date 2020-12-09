@@ -3,11 +3,13 @@ package com.slim.trello.dao;
 import com.slim.trello.entity.TaskAssigned;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
+@Repository
 public class TaskAssignedDAO implements MyDAO<TaskAssigned> {
     private final EntityManager entityManager;
 
@@ -35,19 +37,19 @@ public class TaskAssignedDAO implements MyDAO<TaskAssigned> {
 
     @Override
     @Transactional
-    public boolean update(TaskAssigned taskAssigned) {
+    public TaskAssigned update(TaskAssigned taskAssigned) {
         try {
             getSession().saveOrUpdate(taskAssigned);
-            return true;
+            return taskAssigned;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
     @Override
     @Transactional
-    public boolean save(TaskAssigned taskAssigned) {
+    public TaskAssigned save(TaskAssigned taskAssigned) {
         taskAssigned.setId(0);
         return update(taskAssigned);
     }
