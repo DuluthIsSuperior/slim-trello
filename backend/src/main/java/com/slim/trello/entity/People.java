@@ -2,19 +2,14 @@ package com.slim.trello.entity;
 
 import javax.persistence.*;
 
-//Employee Entity
-@Entity //This will let Java know that this is an entity that we are going to map to a database table.
-@Table(name = "people") //This is for the actual name of the database table we are mapping to the class.
-public class Person {
-
+@Entity
+@Table(name = "people")
+public class People {
     //Define fields
     @Id //This will map the primary key.
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This will auto increment your primary key
     @Column(name = "person_id") //This is mapping the primary key to the id column in the table.
-    private int id;
-
-    @Column(name = "job_title") //This will map the jobTitle field to the column named job_title in the table.
-    private String jobTitle;
+    private int personId;
 
     @Column(name = "first_name") //This will map the firstName field to the column named first_name in the table.
     private String firstName;
@@ -22,24 +17,18 @@ public class Person {
     @Column(name = "last_name") //This will map the lastName field to the column named last_name in the table.
     private String lastName;
 
-    //getter/setters
+    @Column(name = "job_title") //This will map the jobTitle field to the column named job_title in the table.
+    private String jobTitle;
+
     public int getId() {
-        return id;
+        return personId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int personId) {
+        this.personId = personId;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getFirstName() {
+    public String getFirstName(){
         return firstName;
     }
 
@@ -55,14 +44,22 @@ public class Person {
         this.lastName = lastName;
     }
 
-    //ToString Method
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
+    }
+
     @Override
     public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", jobTitle='" + jobTitle + '\'' +
+        return "People{" +
+                "id=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", JobTitle='" + jobTitle + '\'' +
                 '}';
     }
+
 }
