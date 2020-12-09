@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "people")
-public class People {
+public class Person {
     //Define fields
     @Id //This will map the primary key.
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This will auto increment your primary key
@@ -19,17 +19,6 @@ public class People {
 
     @Column(name = "job_title") //This will map the jobTitle field to the column named job_title in the table.
     private String jobTitle;
-
-    //default constructor
-    public People() {
-    }
-
-    //para constructor
-    public People(String firstName, String lastName, String jobTitle) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.jobTitle = jobTitle;
-    }
 
     public int getId() {
         return personId;
@@ -65,7 +54,7 @@ public class People {
 
     @Override
     public String toString() {
-        return "People{" +
+        return "Person{" +
                 "id=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

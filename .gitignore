@@ -3,10 +3,10 @@
 */*.iml
 backend/.mvn
 backend/HELP.md
-backend/pom.xml
 backend/mvnw*
 backend/target
 backend/src/main/resources/application.properties
+backend/.gitignore
 
 frontend/package-lock.json
 frontend/package.json

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "tasks")
-public class Tasks {
+public class Task {
 
     //Define fields
     @Id //This will map the primary key.
@@ -17,16 +17,6 @@ public class Tasks {
 
     @Column(name = "task_description") //This will map the taskDescription field to the column named task_description in the table.
     private String taskDescription;
-
-    //default constructor
-    public Tasks() {
-    }
-
-    //para constructor
-    public Tasks(String taskName, String taskDescription) {
-        this.taskName = taskName;
-        this.taskDescription=taskName;
-    }
 
     public int getId() {
         return taskId;
