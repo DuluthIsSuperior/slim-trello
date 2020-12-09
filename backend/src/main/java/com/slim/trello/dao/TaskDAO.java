@@ -1,20 +1,18 @@
 package com.slim.trello.dao;
 
-import com.slim.trello.entity.Person;
+import com.slim.trello.entity.Task;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
-@Repository
-public class PersonDAO implements MyDAO<Person> {
+public class TaskDAO implements MyDAO<Task> {
     private final EntityManager entityManager;
 
     @Autowired
-    public PersonDAO(EntityManager entityManager) {
+    public TaskDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
@@ -25,21 +23,21 @@ public class PersonDAO implements MyDAO<Person> {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional
-    public List<Person> findAll() {
-        return getSession().createQuery("from Person").getResultList();
+    public List<Task> findAll() {
+        return getSession().createQuery("from Task").getResultList();
     }
 
     @Override
     @Transactional
-    public Person findByID(int ID) {
-        return getSession().get(Person.class, ID);
+    public Task findByID(int ID) {
+        return getSession().get(Task.class, ID);
     }
 
     @Override
     @Transactional
-    public boolean update(Person person) {
+    public boolean update(Task task) {
         try {
-            getSession().saveOrUpdate(person);
+            getSession().saveOrUpdate(task);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,17 +47,17 @@ public class PersonDAO implements MyDAO<Person> {
 
     @Override
     @Transactional
-    public boolean save(Person person) {
-        person.setId(0);
-        return update(person);
+    public boolean save(Task task) {
+        task.setId(0);
+        return update(task);
     }
 
     @Override
     @Transactional
     public boolean deleteByID(int ID) {
-        Person p = findByID(ID);
+        Task p = findByID(ID);
         if (p == null) {
-            System.out.println("Person not found");
+            System.out.println("Task not found");
             return false;
         }
         try {
