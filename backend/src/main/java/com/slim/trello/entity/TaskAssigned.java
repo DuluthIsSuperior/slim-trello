@@ -7,6 +7,9 @@ import javax.persistence.*;
 public class TaskAssigned {
     @Id //This will map the primary key.
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This will auto increment your primary key
+    @Column(name = "id")
+    private int id;
+
     @Column(name = "person_id") //This is mapping the primary key to the person_id column in the table.
     private int personId;
 
@@ -14,6 +17,14 @@ public class TaskAssigned {
     private int taskId;
 
     //getter/setters
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getPersonId() {
         return personId;
     }
