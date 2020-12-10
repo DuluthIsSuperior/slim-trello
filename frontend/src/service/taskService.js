@@ -7,8 +7,8 @@ class taskService{
     addTasks() {
       return axios.post(`http://localhost:8080/addTask`);
     }
-    updateTasks() {
-      return axios.put(`http://localhost:8080/updateTask`);
+    updateTasks(task){
+            return axios.put(`http://localhost:8080/updateTask`, task);
     }
     deleteTask(id) {
       return axios.delete(`http://localhost:8080/deleteTask`, id);
