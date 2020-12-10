@@ -6,16 +6,12 @@ class loginService{
     }
 
     addPerson(){
-            console.log(axios.post(`http://localhost:8080/addPerson`))
+            console.log(axios.post(`http://localhost:8080/addPerson`));
             return axios.post(`http://localhost:8080/addPerson`);
         }
     updatePerson(person){
-            console.log(axios.put(`http://localhost:8080/updatePerson`, person))
+            console.log(axios.put(`http://localhost:8080/updatePerson`, person));
             return axios.put(`http://localhost:8080/updatePerson`, person);
-    }
-
-    updatePerson() {
-      return axios.put(`http://localhost:8080/updatePerson`);
     }
 
     deletePerson(id) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
-import { validateYupSchema } from 'formik';
+
 
 class LoginComponent extends Component{
     constructor(props){
@@ -14,7 +14,7 @@ class LoginComponent extends Component{
             lastName: "",
             login: []
         }
-        this.handleChange = this.handleChange.bind(this)
+        // this.handleChange = this.handleChange.bind(this)
         this.getLoginData = this.getLoginData.bind(this)
         this.getUserData = this.getUserData.bind(this)
     }
@@ -42,7 +42,8 @@ class LoginComponent extends Component{
             if (this.state.lastName !== this.state.login[i].lastName){
                 continue;
             } else {
-                this.props.history.push('/trello/' + this.state.login[i].id);
+                this.props.history.push('/assignPractice');
+                // this.props.history.push('/trello/' + this.state.login[i].id);
                 return;
             }
             
@@ -50,13 +51,10 @@ class LoginComponent extends Component{
         console.log(false);
     }
 
-    handleChange(event) {
-      let nam = event.target.name;
-      let val = event.target.value;
-      this.setState({
-          id: 99,
-          lastName: val
-      });
+    handleChange = (event) =>{
+        let nam = event.target.name;
+        let val = event.target.value;
+        this.setState({[nam]: val});
     }
 
     render(){
