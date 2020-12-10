@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
 
 class LoginComponent extends Component{
@@ -38,8 +39,8 @@ class LoginComponent extends Component{
             } 
             else if (this.state.last_name === this.state.login[i].last_name){
                 console.log(true);
-                this.props.history.push('/dashboard');
-                return;
+                navigate(`/dashboard`);
+                return navigate(`/dashboard`);
             }
             
         }
