@@ -58,7 +58,7 @@ public class Person {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", JobTitle='" + jobTitle + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
                 '}';
     }
 
