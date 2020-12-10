@@ -9,14 +9,13 @@ class LoginComponent extends Component{
 
         this.state={
             //use lastName to iterate through the login
-
             id: 0,
             lastName: "",
             login: []
         }
-        // this.handleChange = this.handleChange.bind(this)
-        this.getLoginData = this.getLoginData.bind(this)
-        this.getUserData = this.getUserData.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.getLoginData = this.getLoginData.bind(this);
+        this.getUserData = this.getUserData.bind(this);
     }
 
     componentDidMount(){
