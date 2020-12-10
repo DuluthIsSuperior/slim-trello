@@ -31,12 +31,6 @@ public class TaskAssignedController {
     }
 
     @PostMapping("/addTaskAssigned")
-    public TaskAssigned addTaskAssigned(@RequestBody TaskAssigned theTaskAssigned){
-        theTaskAssigned.setId(0);
-        return myDAO.save(theTaskAssigned);
-    }
-
-    @PostMapping("/addTaskAssigned")
     public String addTaskAssigned(@RequestBody TaskAssigned theTaskAssigned,int personId,
                                          int taskId){
         Task tempTask = taskMyDAO.findByID(taskId);
@@ -51,8 +45,6 @@ public class TaskAssignedController {
              myDAO.save(theTaskAssigned);
              return "added";
         }
-
-
     }
 
 
