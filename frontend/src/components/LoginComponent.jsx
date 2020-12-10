@@ -15,23 +15,18 @@ class LoginComponent extends Component{
             login: []
         }
         this.handleChange = this.handleChange.bind(this)
-        this.getLoginData=this.getLoginData.bind(this)
-        this.getUserData=this.getUserData.bind(this)
+        this.getLoginData = this.getLoginData.bind(this)
+        this.getUserData = this.getUserData.bind(this)
     }
 
     componentDidMount(){
-        this.getLoginData()
+      this.getLoginData()
     }
 
     getLoginData(){
         loginService.retrieveAllPeople()
             .then(value => {
-                // this.setState({login: value.data})
-                this.setState(prevState => {
-                  return {
-                    login: value.data
-                  }
-                });
+                this.setState({login: value.data})
                 console.log(value.data)
             })
         }
@@ -47,14 +42,8 @@ class LoginComponent extends Component{
             if (this.state.lastName !== this.state.login[i].lastName){
                 continue;
             } else {
-                // this.setState({id: this.state.login[i].id})
-                console.log(this.state.lastName);
-                this.setState(prevState => {
-                  return {
-                    id: this.state.login[i].id
-                  }
-                });
-                this.props.history.push('/trello/' + this.state.id);
+                this.props.history.push('/trello/' + this.state.login[i].id);
+                return;
             }
             
         }
@@ -64,12 +53,9 @@ class LoginComponent extends Component{
     handleChange(event) {
       let nam = event.target.name;
       let val = event.target.value;
-      // this.setState({[nam]: val});
-      this.setState(prevState => {
-        return {
+      this.setState({
           id: 99,
           lastName: val
-        }
       });
     }
 
