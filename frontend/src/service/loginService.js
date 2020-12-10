@@ -10,9 +10,9 @@ class loginService{
             console.log(axios.post(`http://localhost:8080/addPerson`))
             return axios.post(`http://localhost:8080/addPerson`);
         }
-    updatePerson(){
-            console.log(axios.put(`http://localhost:8080/updatePerson`))
-            return axios.put(`http://localhost:8080/updatePerson`);
+    updatePerson(person){
+            console.log(axios.put(`http://localhost:8080/updatePerson`, person))
+            return axios.put(`http://localhost:8080/updatePerson`, person);
     }
     deletePerson(id){
             console.log(axios.delete(`http://localhost:8080/deletePerson`, id))
