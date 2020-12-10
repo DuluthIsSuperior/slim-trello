@@ -8,14 +8,14 @@ class TrelloComponent extends Component {
             lastName: "",
             persons: []
         }
-    this.refreshTasksRegistry = this.refreshTasksRegistry.bind(this)
-    this.deleteTaskClicked = this.deleteTasksClicked.bind(this)
+    // this.refreshTasksRegistry = this.refreshTasksRegistry.bind(this)
+    // this.deleteTaskClicked = this.deleteTasksClicked.bind(this)
     this.updateTasksClicked = this.updateTasksClicked.bind(this)
-    this.addTaskClicked = this.addTaskClicked.bind(this)
+    // this.addTaskClicked = this.addTaskClicked.bind(this)
     }
 
     componentDidMount(){
-        this.refreshTasksRegistry();
+        // this.refreshTasksRegistry();
     }
 
     // refreshTasksRegistry() {
