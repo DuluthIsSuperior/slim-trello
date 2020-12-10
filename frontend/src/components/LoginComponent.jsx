@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
+import { validateYupSchema } from 'formik';
 
 class LoginComponent extends Component{
     constructor(props){
@@ -13,12 +14,10 @@ class LoginComponent extends Component{
             lastName: "",
             login: []
         }
-
+        this.handleChange = this.handleChange.bind(this)
         this.getLoginData=this.getLoginData.bind(this)
         this.getUserData=this.getUserData.bind(this)
     }
-
-    //setState
 
     componentDidMount(){
         this.getLoginData()
@@ -27,7 +26,12 @@ class LoginComponent extends Component{
     getLoginData(){
         loginService.retrieveAllPeople()
             .then(value => {
-                this.setState({login: value.data})
+                // this.setState({login: value.data})
+                this.setState(prevState => {
+                  return {
+                    login: value.data
+                  }
+                });
                 console.log(value.data)
             })
         }
@@ -42,13 +46,14 @@ class LoginComponent extends Component{
         for(var i =0; i <= this.state.login.length - 1; i++){
             if (this.state.lastName !== this.state.login[i].lastName){
                 continue;
-            } 
-            else if (this.state.lastName === this.state.login[i].lastName){
-                this.setState({
-                    id: this.state.login[i].id,
-                })
-                // navigate('/trello/' + this.state.id);
-                // return navigate('/trello/' + this.state.id);
+            } else {
+                // this.setState({id: this.state.login[i].id})
+                console.log(this.state.lastName);
+                this.setState(prevState => {
+                  return {
+                    id: this.state.login[i].id
+                  }
+                });
                 this.props.history.push('/trello/' + this.state.id);
             }
             
@@ -56,11 +61,17 @@ class LoginComponent extends Component{
         console.log(false);
     }
 
-    handleChange = (event) =>{
-            let nam = event.target.name;
-            let val = event.target.value;
-            this.setState({[nam]: val});
+    handleChange(event) {
+      let nam = event.target.name;
+      let val = event.target.value;
+      // this.setState({[nam]: val});
+      this.setState(prevState => {
+        return {
+          id: 99,
+          lastName: val
         }
+      });
+    }
 
     render(){
         return(
