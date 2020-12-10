@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import taskService from '../service/taskService'
+import taskService from '../../service/taskService'
 
 
 class NewTaskComponent extends Component {
@@ -45,11 +45,11 @@ class NewTaskComponent extends Component {
                             </div>
                             <div>
                                 <label>name:</label>
-                                <input className="form-control" type="text" name="name" onChange={this.handleChange}></input>
+                                <input className="form-control" type="text" name="name" onChange={this.handleChange} required></input>
                             </div>
                             <div>
                                 <label>Description:</label>
-                                <input className="form-control" type="text" name="description" onChange={this.handleChange}></input>
+                                <input className="form-control" type="text" name="description" onChange={this.handleChange} required></input>
                             </div>
                             <br/><br/>
                             <button className="btn btn-success" type="submit">Submit</button><br/><br/>
