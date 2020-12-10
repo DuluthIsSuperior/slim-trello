@@ -9,9 +9,9 @@ class taskService{
         console.log(axios.post(`http://localhost:8080/addTask`))
         return axios.post(`http://localhost:8080/addTask`);
     }
-    updateTasks(){
-            console.log(axios.put(`http://localhost:8080/updateTask`))
-            return axios.put(`http://localhost:8080/updateTask`);
+    updateTasks(task){
+            console.log(axios.put(`http://localhost:8080/updateTask`, task))
+            return axios.put(`http://localhost:8080/updateTask`, task);
     }
     deleteTask(id){
             console.log(axios.delete(`http://localhost:8080/deleteTask`, id))
