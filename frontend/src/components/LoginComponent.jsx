@@ -32,7 +32,6 @@ class LoginComponent extends Component{
 
     getUserData(event){
         event.preventDefault();
-        //p
         for (var i =0; i <= this.state.login.length - 1; i++){
           let {firstName, lastName, login} = this.state;
           if (firstName !== login[i].firstName && lastName !== login[i].lastName) {
