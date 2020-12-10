@@ -47,8 +47,9 @@ class LoginComponent extends Component{
                 this.setState({
                     id: this.state.login[i].id,
                 })
+                // navigate('/trello/' + this.state.id);
+                // return navigate('/trello/' + this.state.id);
                 this.props.history.push('/trello/' + this.state.id);
-                return;
             }
             
         }
