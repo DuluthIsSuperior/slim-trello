@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import loginService from '../service/loginService';
+import React, { Component } from 'react'
+import loginService from '../service/loginService'
 import taskService from '../service/taskService'
+import taskAssignedService from '../service/taskAssignedService'
 
-
-class Dashboard extends Component {
+class NewAssignTaskComponent extends Component {
     constructor (props){
         super(props)
         this.state = {
             people: []
         }
-        this.refreshPeopleRegistry = this.refreshPeopleRegistry.bind(this)
+        this.getPeopleData = this.getPeopleData.bind(this)
+        this.getTaskData = this.getTaskData.bind(this)
         // this.deletePeopleClicked = this.deletePeopleClicked.bind(this)
         // this.updatePeopleClicked = this.updatePeopleClicked.bind(this)
         this.addPeopleClicked = this.addPeopleClicked.bind(this)
     }
 
     componentDidMount(){
-        this.refreshPeopleRegistry();
+        this.getPeopleData();
     }
 
-    refreshPeopleRegistry() {
+    getPeopleData() {
         loginService.retrieveAllPeople()
         .then(
-            response => {
+            value => {
                 this.setState({
-                    people: response.data,
+                    people: value.data,
                 })
-                //after setting state, making a call to the task service.  Then make a call to the task assign service.  Then you can match those up.
             }
         )
     }
@@ -60,7 +60,6 @@ class Dashboard extends Component {
                         <tbody>
                             {
                                 this.state.people.map (
-                                    //task would be part of the person, that way you only have one map
                                     people =>   
                                     <tr style={{textAlign: "center"}}>
                                         <td>{people.id}</td>
@@ -73,7 +72,7 @@ class Dashboard extends Component {
                                         <br />
                                         </td>
                                         {/* <td>{}</td>
-                                        //user.tasksAssigned
+                                        <option key={i} value={item.id}>{item.name}</option>
                                         <td><button className="btn btn-dark" onClick={() => this.deleteTasksClicked(tasks.id, tasks.firstName, tasks.lastName)}>-</button></td>
                                         <td><button className="btn btn-info" onClick={() => this.updateTasksClicked(tasks.id, tasks.jobTitle)}>Update</button></td> */}
                                     </tr>
@@ -97,4 +96,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default NewAssignTaskComponent;
