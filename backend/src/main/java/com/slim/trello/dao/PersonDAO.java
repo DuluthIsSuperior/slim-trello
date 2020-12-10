@@ -70,4 +70,13 @@ public class PersonDAO implements MyDAO<Person> {
             return false;
         }
     }
+
+    @Transactional
+    public boolean validateLogIn(Person person, String password) {
+        getSession().createSQLQuery("CALL validateUser(:firstName, :lastName, :password)")
+                .setParameter("firstName", person.getFirstName())
+                .setParameter("lastName", person.getLastName())
+                .setParameter("password", password);
+        return false;
+    }
 }
