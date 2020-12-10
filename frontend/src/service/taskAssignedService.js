@@ -1,18 +1,18 @@
 import axios from 'axios';
 
 class taskServiceAssigned{
-    retrieveAllTasks() {
+    retrieveAllTaskAssigned() {
       return axios.get(`http://localhost:8080/retrieveAllTaskAssigned`);
     }
 
-    addTasks() {
+    addTaskAssigned() {
       return axios.post(`http://localhost:8080/addTaskAssigned`);
     }
-    updateTasks(taskAssigned){
+    updateTaskAssigned(taskAssigned){
             return axios.put(`http://localhost:8080/updateTaskAssigned`, taskAssigned);
     }
 
-    deleteTask(id) {
+    deleteTaskAssigned(id) {
      return axios.delete(`http://localhost:8080/deleteTask`, id);
     }
 }

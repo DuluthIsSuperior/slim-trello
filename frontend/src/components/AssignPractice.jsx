@@ -11,36 +11,66 @@ class Dashboard extends Component {
             tasks: [],
             taskAssigned: []
         }
-        this.refreshAssignRegistry = this.refreshAssignRegistry.bind(this)
+        this.refreshTaskAssignRegistry = this.refreshTaskAssignRegistry.bind(this)
+        this.refreshTaskRegistry = this.refreshTaskRegistry.bind(this)
+        this.refreshPeopleRegistry = this.refreshPeopleRegistry.bind(this)
         // this.deletePeopleClicked = this.deletePeopleClicked.bind(this)
         // this.updatePeopleClicked = this.updatePeopleClicked.bind(this)
     }
 
     componentDidMount(){
-        this.refreshAssignRegistry();
+        this.refreshTaskAssignRegistry();
+        this.refreshPeopleRegistry();
+        this.refreshTaskRegistry();
     }
 
-    refreshTaskAssignedRegistry() {
+    refreshTaskAssignRegistry() {
         taskAssignedService.retrieveAllTaskAssigned()
         .then(
             response => {
                 this.setState({
                     taskAssigned: response.data,
                 })
+                console.log(response.data)
             }
         )
     }
 
-    findPersonClicked(){
-        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
-           console.log(taskAssignedService[i].person_id)
+    refreshTaskRegistry() {
+        taskService.retrieveAllTasks()
+        .then(
+            response => {
+                this.setState({
+                    tasks: response.data,
+                })
+                console.log(response.data)
+            }
+        )
     }
+
+    refreshPeopleRegistry() {
+        loginService.retrieveAllPeople()
+        .then(
+            response => {
+                this.setState({
+                    people: response.data
+                })
+                console.log(response.data)
+            }
+        )
+    }
+
+    findPerson1Clicked(){
+        if (this.state.people[1]){
+            console.log()
+        }
+        let peep = this.state.people.id[2]
+        console.log(peep)
 }
 
     findTaskClicked(){
-        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
-            console.log(taskAssignedService[i].task_id)
-     }
+        let teet = this.state.person_id[2]
+        console.log(teet)
     }
 
     
