@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
-import { validateYupSchema } from 'formik';
 
 class LoginComponent extends Component{
     constructor(props){
