@@ -37,19 +37,19 @@ public class PersonDAO implements MyDAO<Person> {
 
     @Override
     @Transactional
-    public boolean update(Person person) {
+    public Person update(Person person) {
         try {
             getSession().saveOrUpdate(person);
-            return true;
+            return person;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
     @Override
     @Transactional
-    public boolean save(Person person) {
+    public Person save(Person person) {
         person.setId(0);
         return update(person);
     }

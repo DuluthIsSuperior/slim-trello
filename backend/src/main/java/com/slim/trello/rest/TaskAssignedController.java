@@ -8,40 +8,44 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = {"http://localhost:3000"})
+@RestController
 public class TaskAssignedController {
-    private final MyDAO myDAO;
+    private final MyDAO<TaskAssigned> myDAO;
 
     @Autowired
-    public TaskAssignedController(@Qualifier("taskIMPL") MyDAO myDAO) {
+    public TaskAssignedController(@Qualifier("taskAssignedDAO") MyDAO<TaskAssigned> myDAO) {
         this.myDAO = myDAO;
     }
 
     @GetMapping("/retrieveAllTaskAssigned")
-    public List<Object> findAll() {
+    public List<TaskAssigned> findAll() {
         return myDAO.findAll();
     }
 
     @PostMapping("/addTaskAssigned")
     public TaskAssigned addTaskAssigned(@RequestBody TaskAssigned theTaskAssigned){
         theTaskAssigned.setId(0);
-        myDAO.save(theTaskAssigned);
+        return myDAO.save(theTaskAssigned);
     }
+
     @PutMapping("/updateTaskAssigned")
     public TaskAssigned updateTaskAssigned(@RequestBody TaskAssigned updateTaskAssigned) {
         myDAO.save(updateTaskAssigned);
         return updateTaskAssigned;
     }
+
     @DeleteMapping("/deleteTaskAssigned/{personId}")
     public String deleteTaskAssigned(@PathVariable int personId) {
-        TaskAssigned tempTaskAssigned = (TaskAssigned) myDAO.findById(personId);
+        TaskAssigned tempTaskAssigned = myDAO.findByID(personId);
 
         //This will throw an exception if the employee is null
         if(tempTaskAssigned == null) {
-            throw new RuntimeException("TaskAssigned is not found : " + personId);
+            return "Not found";
         }
 
         //This will execute the deleteByID.
-        myDAO.deleteById(personId);
+        myDAO.deleteByID(personId);
         return "Deleted person id : " + personId;
     }
 }

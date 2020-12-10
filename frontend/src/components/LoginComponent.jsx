@@ -45,10 +45,10 @@ class LoginComponent extends Component{
             } 
             else if (this.state.lastName === this.state.login[i].lastName){
                 this.setState({
-                    id: this.state.login[i].id
+                    id: this.state.login[i].id,
                 })
-                navigate(`/trello/:id`);
-                return navigate(`/trello/:id`);
+                this.props.history.push('/trello/' + this.state.id);
+                return;
             }
             
         }
