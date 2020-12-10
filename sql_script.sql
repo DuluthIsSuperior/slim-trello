@@ -15,9 +15,10 @@ CREATE TABLE people(
 INSERT INTO people(first_name, last_name, password, job_title)
 VALUES('Adam', 'Smith', 'admin', 'Admin'), ('Jane', 'Doe', 'janeDoe', 'Developer'), ('Walter', 'White', 'walterWhite', 'Distributor');
 
+DROP FUNCTION IF EXISTS validateUser;
 # delimiter command below prevents MySQL from interpreting each line of the function as its own query
 DELIMITER $$
-CREATE FUNCTION `validateUser` (f_name VARCHAR(20), l_name VARCHAR(20), pwd VARCHAR(15))
+CREATE FUNCTION validateUser(f_name VARCHAR(20), l_name VARCHAR(20), pwd VARCHAR(15))
 RETURNS INTEGER
 READS SQL DATA
 BEGIN
