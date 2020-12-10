@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
 
 class LoginComponent extends Component{
@@ -44,7 +45,7 @@ class LoginComponent extends Component{
             } 
             else if (this.state.lastName === this.state.login[i].lastName){
                 this.setState({
-                    id: this.state.login[i].id
+                    id: this.state.login[i].id,
                 })
                 this.props.history.push('/trello/' + this.state.id);
                 return;
