@@ -12,7 +12,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={LoginComponent}/>
-          <Route path="/trello/${id}" component={TrelloComponent}/>
+          <Route path="/trello/:id" component={TrelloComponent}/>
           <Route path="/dashboard" component={Dashboard}/>
           <Route path="/thePerson/:id" component={NewPersonComponent}/>
         </Switch>
