@@ -1,13 +1,16 @@
 */.idea
 */out
 */*.iml
+*/.eslintcache
+*/.gitignore
+
 package-lock.json
+
 backend/.mvn
 backend/HELP.md
 backend/mvnw*
 backend/target
 backend/src/main/resources/application.properties
-backend/.gitignore
 
 frontend/package-lock.json
 frontend/package.json
