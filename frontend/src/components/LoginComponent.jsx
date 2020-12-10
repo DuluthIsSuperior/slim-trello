@@ -7,15 +7,14 @@ class LoginComponent extends Component{
 
         this.state={
             //use lastName to iterate through the login
-
             id: 0,
             firstName: "",
             lastName: "",
             login: []
         }
-        this.handleChange = this.handleChange.bind(this)
-        this.getLoginData = this.getLoginData.bind(this)
-        this.getUserData = this.getUserData.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.getLoginData = this.getLoginData.bind(this);
+        this.getUserData = this.getUserData.bind(this);
     }
 
     componentDidMount(){
@@ -32,6 +31,7 @@ class LoginComponent extends Component{
 
     getUserData(event){
         event.preventDefault();
+        //p
         for (var i =0; i <= this.state.login.length - 1; i++){
           let {firstName, lastName, login} = this.state;
           if (firstName !== login[i].firstName && lastName !== login[i].lastName) {
