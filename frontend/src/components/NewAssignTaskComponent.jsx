@@ -41,6 +41,14 @@ class NewAssignTaskComponent extends Component {
         this.props.history.push(`/theTask/-1`)
     }
 
+    handleSubmit(){
+        let taskAssign = {
+            id: this.state.id,
+            taskId: this.state.taskId,
+            personId: this.state.personId,
+        }
+    }
+
     
     render(){
         return(

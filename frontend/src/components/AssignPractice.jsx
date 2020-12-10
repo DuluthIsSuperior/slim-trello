@@ -67,7 +67,7 @@ class Dashboard extends Component {
 
     findPersonClicked(event){
         event.preventDefault()
-        let num = 1;
+        let num = 0;
         for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
             if(this.state.taskAssigned[i].personId === this.state.people[0].id){
                 num++
@@ -76,7 +76,7 @@ class Dashboard extends Component {
             }
         }
         console.log(num)
-        // console.log(this.state.people[num].firstName + " " + this.state.people[num].lastName)
+        console.log(this.state.people[0].firstName + " " + this.state.people[0].lastName + " - " + this.state.people[0].jobTitle)
     }
 
     findTaskClicked(event){ 
@@ -90,7 +90,8 @@ class Dashboard extends Component {
             }
         }
         console.log(num2)
-        console.log(this.state.tasks[1].name)
+        console.log(this.state.tasks[1].name + " : " + this.state.tasks[1].description)
+        
     }
 
     assignTaskClicked(event){ 
@@ -133,11 +134,10 @@ class Dashboard extends Component {
     }
 
     handleSubmit(){
-        let person = {
+        let taskAssign = {
             id: this.state.id,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            jobTitle: this.state.jobTitle
+            taskId: this.state.taskId,
+            personId: this.state.personId,
         }
     }
     
