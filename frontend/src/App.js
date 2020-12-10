@@ -5,6 +5,7 @@ import TrelloComponent from './components/TrelloComponent';
 import Dashboard from './components/Dashboard';
 import NewPersonComponent from './components/NewPersonComponent'
 import NewTaskComponent from './components/NewTaskComponent'
+import AssignPractice from './components/AssignPractice'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/dashboard" component={Dashboard}/>
           <Route path="/thePerson/:id" component={NewPersonComponent}/>
           <Route path="/theTask/:id" component={NewTaskComponent}/>
+          <Route path="/assignPractice" component={AssignPractice}/>
         </Switch>
       </Router>
     </div>
