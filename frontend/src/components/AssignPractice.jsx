@@ -14,6 +14,8 @@ class Dashboard extends Component {
         this.getPeopleData = this.getPeopleData.bind(this)
         this.getTaskData = this.getTaskData.bind(this)
         this.getTaskAssignedData = this.getTaskAssignedData.bind(this)
+        this.findPersonClicked = this.findPersonClicked.bind(this)
+        this.findTaskClicked = this.findTaskClicked.bind(this)
         // this.refreshTaskAssignRegistry = this.refreshTaskAssignRegistry.bind(this)
         // this.refreshTaskRegistry = this.refreshTaskRegistry.bind(this)
         // this.refreshPeopleRegistry = this.refreshPeopleRegistry.bind(this)
@@ -26,7 +28,6 @@ class Dashboard extends Component {
     }
 
     getPeopleData() {
-        
         loginService.retrieveAllPeople()
         .then(
             value => {
@@ -62,20 +63,36 @@ class Dashboard extends Component {
         )
     }
 
-    handleChange = (event) =>{
-        let nam = event.target.name;
-        let val = event.target.value;
-        this.setState({[nam]: val});
-    }
+    // handleChange = (event) =>{
+    //     let nam = event.target.name;
+    //     let val = event.target.value;
+    //     this.setState({[nam]: val});
+    // }
 
     findPersonClicked(event){
         event.preventDefault()
-        console.log(this.state.people.id[2])
+        let num = 0;
+        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+            if(this.state.taskAssigned[i].personId === this.state.people[0].id){
+                num++
+            } else {
+                continue
+            }
+            console.log(num)
+        }
+        
     }
 
     findTaskClicked(event){ 
         event.preventDefault()
-        console.log(this.state.person_id[2])
+        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+            if(this.state.taskAssigned[i].taskId === this.state.tasks[i].id){
+                console.log(true)
+            } else if (this.state.taskAssigned[i].personId !== this.state.tasks[i].id){
+                console.log(false)
+            }
+        }
+        console.log("done")
     }
 
 

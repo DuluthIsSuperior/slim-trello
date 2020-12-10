@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import loginService from '../service/loginService';
+import taskService from '../service/taskService'
 
 
 class Dashboard extends Component {
@@ -25,6 +26,7 @@ class Dashboard extends Component {
                 this.setState({
                     people: response.data,
                 })
+                //after setting state, making a call to the task service.  Then make a call to the task assign service.  Then you can match those up.
             }
         )
     }
@@ -58,6 +60,7 @@ class Dashboard extends Component {
                         <tbody>
                             {
                                 this.state.people.map (
+                                    //task would be part of the person, that way you only have one map
                                     people =>   
                                     <tr style={{textAlign: "center"}}>
                                         <td>{people.id}</td>
