@@ -11,67 +11,90 @@ class Dashboard extends Component {
             tasks: [],
             taskAssigned: []
         }
-        this.refreshTaskAssignRegistry = this.refreshTaskAssignRegistry.bind(this)
-        this.refreshTaskRegistry = this.refreshTaskRegistry.bind(this)
-        this.refreshPeopleRegistry = this.refreshPeopleRegistry.bind(this)
-        // this.deletePeopleClicked = this.deletePeopleClicked.bind(this)
-        // this.updatePeopleClicked = this.updatePeopleClicked.bind(this)
+        this.getPeopleData = this.getPeopleData.bind(this)
+        this.getTaskData = this.getTaskData.bind(this)
+        this.getTaskAssignedData = this.getTaskAssignedData.bind(this)
+        this.findPersonClicked = this.findPersonClicked.bind(this)
+        this.findTaskClicked = this.findTaskClicked.bind(this)
+        // this.refreshTaskAssignRegistry = this.refreshTaskAssignRegistry.bind(this)
+        // this.refreshTaskRegistry = this.refreshTaskRegistry.bind(this)
+        // this.refreshPeopleRegistry = this.refreshPeopleRegistry.bind(this)
     }
 
     componentDidMount(){
-        this.refreshTaskAssignRegistry();
-        this.refreshPeopleRegistry();
-        this.refreshTaskRegistry();
+        this.getPeopleData()
+        this.getTaskData()
+        this.getTaskAssignedData()
     }
 
-    refreshTaskAssignRegistry() {
-        taskAssignedService.retrieveAllTaskAssigned()
-        .then(
-            response => {
-                this.setState({
-                    taskAssigned: response.data,
-                })
-                console.log(response.data)
-            }
-        )
-    }
-
-    refreshTaskRegistry() {
-        taskService.retrieveAllTasks()
-        .then(
-            response => {
-                this.setState({
-                    tasks: response.data,
-                })
-                console.log(response.data)
-            }
-        )
-    }
-
-    refreshPeopleRegistry() {
+    getPeopleData() {
         loginService.retrieveAllPeople()
         .then(
-            response => {
+            value => {
                 this.setState({
-                    people: response.data
+                    people: value.data,
                 })
-                console.log(response.data)
+                console.log(value.data)
             }
         )
     }
 
-    findPerson1Clicked(){
-        if (this.state.people[1]){
-            console.log()
-        }
-        let peep = this.state.people.id[2]
-        console.log(peep)
-}
-
-    findTaskClicked(){
-        let teet = this.state.person_id[2]
-        console.log(teet)
+    getTaskData() {
+        taskService.retrieveAllTasks()
+        .then(
+            value => {
+                this.setState({
+                    tasks: value.data,
+                })
+                console.log(value.data)
+            }
+        )
     }
+
+    getTaskAssignedData() {
+        taskAssignedService.retrieveAllTaskAssigned()
+        .then(
+            value => {
+                this.setState({
+                    taskAssigned: value.data,
+                })
+                console.log(value.data)
+            }
+        )
+    }
+
+    // handleChange = (event) =>{
+    //     let nam = event.target.name;
+    //     let val = event.target.value;
+    //     this.setState({[nam]: val});
+    // }
+
+    findPersonClicked(event){
+        event.preventDefault()
+        let num = 0;
+        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+            if(this.state.taskAssigned[i].personId === this.state.people[0].id){
+                num++
+            } else {
+                continue
+            }
+            console.log(num)
+        }
+        
+    }
+
+    findTaskClicked(event){ 
+        event.preventDefault()
+        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+            if(this.state.taskAssigned[i].taskId === this.state.tasks[i].id){
+                console.log(true)
+            } else if (this.state.taskAssigned[i].personId !== this.state.tasks[i].id){
+                console.log(false)
+            }
+        }
+        console.log("done")
+    }
+
 
     
     render(){
