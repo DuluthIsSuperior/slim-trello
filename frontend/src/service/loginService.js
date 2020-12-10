@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 class loginService{
-    retrieveAllPeople(){
-        return axios.get(`http://localhost:8080/retrieveAllPeople`);
+    retrieveAllPeople() {
+      return axios.get(`http://localhost:8080/retrieveAllPeople`);
     }
 
     addPerson(){
@@ -13,9 +13,13 @@ class loginService{
             console.log(axios.put(`http://localhost:8080/updatePerson`, person))
             return axios.put(`http://localhost:8080/updatePerson`, person);
     }
-    deletePerson(id){
-            console.log(axios.delete(`http://localhost:8080/deletePerson`, id))
-            return axios.delete(`http://localhost:8080/deletePerson`, id);
+
+    updatePerson() {
+      return axios.put(`http://localhost:8080/updatePerson`);
+    }
+
+    deletePerson(id) {
+      return axios.delete(`http://localhost:8080/deletePerson`, id);
     }
 }
 

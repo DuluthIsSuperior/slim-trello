@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
+import { validateYupSchema } from 'formik';
 
 class LoginComponent extends Component{
     constructor(props){
@@ -13,15 +14,13 @@ class LoginComponent extends Component{
             lastName: "",
             login: []
         }
-
-        this.getLoginData=this.getLoginData.bind(this)
-        this.getUserData=this.getUserData.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.getLoginData = this.getLoginData.bind(this)
+        this.getUserData = this.getUserData.bind(this)
     }
 
-    //setState
-
     componentDidMount(){
-        this.getLoginData()
+      this.getLoginData()
     }
 
     getLoginData(){
@@ -42,25 +41,23 @@ class LoginComponent extends Component{
         for(var i =0; i <= this.state.login.length - 1; i++){
             if (this.state.lastName !== this.state.login[i].lastName){
                 continue;
-            } 
-            else if (this.state.lastName === this.state.login[i].lastName){
-                this.setState({
-                    id: this.state.login[i].id,
-                })
-                // navigate('/trello/' + this.state.id);
-                // return navigate('/trello/' + this.state.id);
-                this.props.history.push('/trello/' + this.state.id);
+            } else {
+                this.props.history.push('/trello/' + this.state.login[i].id);
+                return;
             }
             
         }
         console.log(false);
     }
 
-    handleChange = (event) =>{
-            let nam = event.target.name;
-            let val = event.target.value;
-            this.setState({[nam]: val});
-        }
+    handleChange(event) {
+      let nam = event.target.name;
+      let val = event.target.value;
+      this.setState({
+          id: 99,
+          lastName: val
+      });
+    }
 
     render(){
         return(
