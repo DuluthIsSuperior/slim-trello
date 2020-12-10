@@ -6,9 +6,10 @@ class LoginComponent extends Component{
         super(props)
 
         this.state={
-            //use last_name to iterate through the login
-            id: "",
-            last_name: "",
+            //use lastName to iterate through the login
+
+            id: 0,
+            lastName: "",
             login: []
         }
 
@@ -16,30 +17,37 @@ class LoginComponent extends Component{
         this.getUserData=this.getUserData.bind(this)
     }
 
+    //setState
+
     componentDidMount(){
         this.getLoginData()
     }
 
     getLoginData(){
-        console.log("Hello World!")
         loginService.retrieveAllPeople()
             .then(value => {
                 this.setState({login: value.data})
-                console.log("!", value.data)
+                console.log(value.data)
             })
-    }
+        }
 
     getUserData(event){
         event.preventDefault()
-        console.log(this.state.login);
+        // console.log(this.state.login);
+        // console.log(this.state.login[1]);
+        // console.log(this.state.login[1].id);
+        // console.log(this.state.login[2].id);
+        // console.log(this.state.login[3].id);
         for(var i =0; i <= this.state.login.length - 1; i++){
-            if (this.state.last_name !== this.state.login[i].last_name){
+            if (this.state.lastName !== this.state.login[i].lastName){
                 continue;
             } 
-            else if (this.state.last_name === this.state.login[i].last_name){
-                console.log(true);
-                this.props.history.push('/dashboard');
-                return;
+            else if (this.state.lastName === this.state.login[i].lastName){
+                this.setState({
+                    id: this.state.login[i].id
+                })
+                navigate(`/trello/:id`);
+                return navigate(`/trello/:id`);
             }
             
         }
@@ -61,9 +69,9 @@ class LoginComponent extends Component{
                         <label>Enter Last Name</label>
                         <input 
                         type="text"
-                        name="last_name"
+                        name="lastName"
                         placeholder="Last Name"
-                        value={this.state.last_name} 
+                        value={this.state.lastName} 
                         onChange={this.handleChange} 
                         required
                         />
