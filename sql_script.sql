@@ -8,12 +8,11 @@ CREATE TABLE people(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(20) NOT NULL,
-    password VARCHAR(15) NOT NULL,
     job_title VARCHAR(30) NOT NULL
 ) AUTO_INCREMENT = 1;
 
-INSERT INTO people(first_name, last_name, password, job_title)
-VALUES('Adam', 'Smith', 'admin', 'Admin'), ('Jane', 'Doe', 'janeDoe', 'Developer'), ('Walter', 'White', 'walterWhite', 'Distributor');
+INSERT INTO people(first_name, last_name, job_title)
+VALUES('Adam', 'Smith', 'Admin'), ('Jane', 'Doe', 'Developer'), ('Walter', 'White', 'Distributor');
 
 DROP TABLE IF EXISTS tasks;
 CREATE TABLE tasks(
