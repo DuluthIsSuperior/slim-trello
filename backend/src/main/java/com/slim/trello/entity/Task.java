@@ -9,45 +9,45 @@ public class Task {
     //Define fields
     @Id //This will map the primary key.
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This will auto increment your primary key
-    @Column(name = "task_id") //This is mapping the primary key to the id column in the table.
-    private int taskId;
+    @Column(name = "id") //This is mapping the primary key to the id column in the table.
+    private int id;
 
-    @Column(name = "task_name") //This will map the the taskName field to the column named task_name in the table.
-    private String taskName;
+    @Column(name = "name") //This will map the the taskName field to the column named task_name in the table.
+    private String name;
 
-    @Column(name = "task_description") //This will map the taskDescription field to the column named task_description in the table.
-    private String taskDescription;
+    @Column(name = "description") //This will map the taskDescription field to the column named task_description in the table.
+    private String description;
 
     public int getId() {
-        return taskId;
+        return id;
     }
 
     public void setId(int TaskId) {
-        this.taskId = taskId;
+        this.id = id;
     }
 
-    public String getTaskName() {
-        return taskName;
+    public String getName() {
+        return name;
     }
 
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTaskDescription() {
-        return taskDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public String toString() {
         return "Tasks{" +
-                "taskId=" + taskId +
-                ", taskName='" + taskName + '\'' +
-                ", taskDescription='" + taskDescription + '\'' +
+                "taskId=" + id +
+                ", taskName='" + name + '\'' +
+                ", taskDescription='" + description + '\'' +
                 '}';
     }
 }

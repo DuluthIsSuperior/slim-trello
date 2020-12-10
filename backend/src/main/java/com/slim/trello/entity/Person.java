@@ -8,8 +8,8 @@ public class Person {
     //Define fields
     @Id //This will map the primary key.
     @GeneratedValue(strategy = GenerationType.IDENTITY) //This will auto increment your primary key
-    @Column(name = "person_id") //This is mapping the primary key to the id column in the table.
-    private int personId;
+    @Column(name = "id") //This is mapping the primary key to the id column in the table.
+    private int id;
 
     @Column(name = "first_name") //This will map the firstName field to the column named first_name in the table.
     private String firstName;
@@ -21,11 +21,11 @@ public class Person {
     private String jobTitle;
 
     public int getId() {
-        return personId;
+        return id;
     }
 
     public void setId(int personId) {
-        this.personId = personId;
+        this.id = personId;
     }
 
     public String getFirstName(){
@@ -55,7 +55,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "id=" + personId +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", JobTitle='" + jobTitle + '\'' +
