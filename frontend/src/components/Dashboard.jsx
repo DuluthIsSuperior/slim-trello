@@ -34,6 +34,11 @@ class Dashboard extends Component {
         this.props.history.push(`/thePerson/-1`)
     }
 
+    addTaskClicked(){
+        console.log('Add Task Clicked')
+        this.props.history.push(`/theTask/-1`)
+    }
+
     
     render(){
         return(
@@ -79,7 +84,7 @@ class Dashboard extends Component {
                         <button className="btn btn-success" onClick={this.addPersonClicked}>Add Person</button>
                         <br />
                         <br/>
-                        <button className="btn btn-success">Add Tasks</button>
+                        <button className="btn btn-success" onClick={this.addTaskClicked}>Add Task</button>
                         <br/>
                         <br/>
                     </div>
