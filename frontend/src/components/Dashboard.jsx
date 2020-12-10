@@ -1,6 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import loginService from '../service/loginService';
+
 
 class Dashboard extends Component {
+    constructor (props){
+        super(props)
+        this.state = {
+            people: []
+        }
+        this.refreshPeopleRegistry = this.refreshPeopleRegistry.bind(this)
+        this.deletePeopleClicked = this.deletePeopleClicked.bind(this)
+        this.updatePeopleClicked = this.updatePeopleClicked.bind(this)
+        this.addPeopleClicked = this.addPeopleClicked.bind(this)
+    }
+
+    
     render(){
         return(
             <div className="container">
