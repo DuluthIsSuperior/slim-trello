@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
-import { validateYupSchema } from 'formik';
 
 class LoginComponent extends Component{
     constructor(props){
@@ -11,6 +9,7 @@ class LoginComponent extends Component{
             //use lastName to iterate through the login
 
             id: 0,
+            firstName: "",
             lastName: "",
             login: []
         }
@@ -32,31 +31,24 @@ class LoginComponent extends Component{
         }
 
     getUserData(event){
-        event.preventDefault()
-        // console.log(this.state.login);
-        // console.log(this.state.login[1]);
-        // console.log(this.state.login[1].id);
-        // console.log(this.state.login[2].id);
-        // console.log(this.state.login[3].id);
-        for(var i =0; i <= this.state.login.length - 1; i++){
-            if (this.state.lastName !== this.state.login[i].lastName){
-                continue;
-            } else {
-                this.props.history.push('/trello/' + this.state.login[i].id);
-                return;
-            }
+        event.preventDefault();
+        for (var i =0; i <= this.state.login.length - 1; i++){
+          let {firstName, lastName, login} = this.state;
+          if (firstName !== login[i].firstName && lastName !== login[i].lastName) {
+            continue;
+          } else {
+            this.props.history.push('/trello/' + this.state.login[i].id);
+            return;
+          }
             
         }
-        console.log(false);
+        alert("Invalid login");
     }
 
     handleChange(event) {
       let nam = event.target.name;
       let val = event.target.value;
-      this.setState({
-          id: 99,
-          lastName: val
-      });
+      this.setState({[nam]: val});
     }
 
     render(){
@@ -65,6 +57,8 @@ class LoginComponent extends Component{
                 <h1>Login to Trello-Lite</h1>
                 <form>
                     <div>
+                        <label>Enter First Name</label>
+                        <input type="text" name="firstName" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange} required/><br/>
                         <label>Enter Last Name</label>
                         <input 
                         type="text"
