@@ -14,12 +14,18 @@ import java.util.List;
 @RestController
 public class TaskAssignedController {
     private final MyDAO<TaskAssigned> myDAO;
+<<<<<<< HEAD
     private final MyDAO<Person> personMyDAO;
     private final MyDAO<Task> taskMyDAO;
 
     @Autowired
     public TaskAssignedController(@Qualifier("taskAssignedDAO") MyDAO<TaskAssigned> myDAO, @Qualifier("personDAO") MyDAO<Person> personMyDAO,
                                   @Qualifier("taskDAO")MyDAO<Task> taskMyDAO) {
+=======
+
+    @Autowired
+    public TaskAssignedController(@Qualifier("taskAssignedDAO") MyDAO<TaskAssigned> myDAO) {
+>>>>>>> main
         this.myDAO = myDAO;
         this.personMyDAO = personMyDAO;
         this.taskMyDAO = taskMyDAO;
@@ -36,6 +42,7 @@ public class TaskAssignedController {
         return myDAO.save(theTaskAssigned);
     }
 
+<<<<<<< HEAD
     @PostMapping("/addTaskAssigned")
     public String addTaskAssigned(@RequestBody TaskAssigned theTaskAssigned,int personId,
                                          int taskId){
@@ -56,13 +63,18 @@ public class TaskAssignedController {
     }
 
 
+=======
+>>>>>>> main
     @PutMapping("/updateTaskAssigned")
     public TaskAssigned updateTaskAssigned(@RequestBody TaskAssigned updateTaskAssigned) {
         myDAO.save(updateTaskAssigned);
         return updateTaskAssigned;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     @DeleteMapping("/deleteTaskAssigned/{personId}")
     public String deleteTaskAssigned(@PathVariable int personId) {
         TaskAssigned tempTaskAssigned = myDAO.findByID(personId);

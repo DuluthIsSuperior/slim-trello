@@ -11,40 +11,40 @@ import java.util.List;
 @CrossOrigin(origins = {"http://localhost:3000"})
 @RestController
 public class PersonController {
-    private final MyDAO myDAO;
+    private final MyDAO<Person> myDAO;
 
     @Autowired
-    public PersonController(@Qualifier("personIMPL") MyDAO myDAO) {
+    public PersonController(@Qualifier("personDAO") MyDAO<Person> myDAO) {
         this.myDAO = myDAO;
     }
 
     @GetMapping("/retrieveAllPeople")
-    public List<Object> findAll() {
+    public List<Person> findAll() {
         return myDAO.findAll();
     }
 
     @PostMapping("/addPerson")
     public Person addPerson(@RequestBody Person thePerson){
         thePerson.setId(0);
-        myDAO.save(thePerson);
+        return myDAO.save(thePerson);
     }
+
     @PutMapping("/updatePerson")
     public Person updatePerson(@RequestBody Person updatePerson) {
         myDAO.save(updatePerson);
         return updatePerson;
     }
+
     @DeleteMapping("/deletePerson/{personId}")
     public String deletePerson(@PathVariable int personId) {
-        Person tempPerson = (Person) myDAO.findById(personId);
+        Person tempPerson = myDAO.findByID(personId);
 
-        //This will throw an exception if the employee is null
-        if(tempPerson == null) {
-            throw new RuntimeException("Person is not found : " + personId);
+        if (tempPerson == null) {
+            return "Not found";
         }
 
         //This will execute the deleteByID.
-        myDAO.deleteById(personId);
+        myDAO.deleteByID(personId);
         return "Deleted person id : " + personId;
     }
-
 }
