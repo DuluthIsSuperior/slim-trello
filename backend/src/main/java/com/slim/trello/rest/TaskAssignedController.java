@@ -1,6 +1,7 @@
 package com.slim.trello.rest;
 
 import com.slim.trello.dao.MyDAO;
+import com.slim.trello.dao.TaskAssignedDAO;
 import com.slim.trello.entity.Person;
 import com.slim.trello.entity.Task;
 import com.slim.trello.entity.TaskAssigned;
@@ -28,6 +29,11 @@ public class TaskAssignedController {
     @GetMapping("/retrieveAllTaskAssigned")
     public List<TaskAssigned> findAll() {
         return myDAO.findAll();
+    }
+
+    @GetMapping("/retrieveTasksAssignedByPerson/{id}")
+    public List<TaskAssigned> getTasksAssignedByPerson(@PathVariable int id) {
+        return ((TaskAssignedDAO) myDAO).findByPersonID(id);
     }
 
     @PostMapping("/addTaskAssigned")
