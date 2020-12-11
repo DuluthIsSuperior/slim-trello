@@ -71,9 +71,20 @@ class Dashboard extends Component {
         if (person.tasks !== undefined) {
           let tasks = "";
           person.tasks.forEach(task => {
-            tasks = tasks + task.name + " - " + task.description;
+            tasks = tasks + task.name + " - " + task.description + "\n";
           });
-          return <td>{tasks}</td>
+
+          const App = () => // renders each line as a span with a line break
+          tasks.split('\n').map((value, index) => {
+            return (
+              <span key={index}>
+                {value}
+                <br />
+              </span>
+            );
+          });
+
+          return <td>{App()}</td>
         } else {
           return <td>?</td>
         }
