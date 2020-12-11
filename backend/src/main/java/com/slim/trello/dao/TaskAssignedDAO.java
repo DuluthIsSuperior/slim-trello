@@ -35,6 +35,12 @@ public class TaskAssignedDAO implements MyDAO<TaskAssigned> {
         return getSession().get(TaskAssigned.class, ID);
     }
 
+    @SuppressWarnings("unchecked")
+    @Transactional
+    public List<TaskAssigned> findByPersonID(int ID) {
+        return getSession().createQuery(String.format("from TaskAssigned where person_id = '%d'", ID)).getResultList();
+    }
+
     @Override
     @Transactional
     public TaskAssigned update(TaskAssigned taskAssigned) {
