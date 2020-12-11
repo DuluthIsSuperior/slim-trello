@@ -47,15 +47,15 @@ class NewPersonComponent extends Component {
                             </div>
                             <div>
                                 <label>First Name:</label>
-                                <input className="form-control" type="text" name="firstName" onChange={this.handleChange}></input>
+                                <input className="form-control" type="text" name="firstName" onChange={this.handleChange} required></input>
                             </div>
                             <div>
                                 <label>Last Name:</label>
-                                <input className="form-control" type="text" name="lastName" onChange={this.handleChange}></input>
+                                <input className="form-control" type="text" name="lastName" onChange={this.handleChange} required></input>
                             </div>
                             <div>
                                 <label>Job Title:</label>
-                                <input className="form-control" type="text" name="jobTitle" onChange={this.handleChange}></input>
+                                <input className="form-control" type="text" name="jobTitle" onChange={this.handleChange} required></input>
                             </div>
                             <br/><br/>
                             <button className="btn btn-success" type="submit">Submit</button><br/><br/>

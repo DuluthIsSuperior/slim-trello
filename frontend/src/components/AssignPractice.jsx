@@ -133,12 +133,23 @@ class Dashboard extends Component {
         console.log(count)
     }
 
-    handleSubmit(){
-        let taskAssign = {
-            id: this.state.id,
-            taskId: this.state.taskId,
-            personId: this.state.personId,
+    taskDoneClicked(event){
+        event.preventDefault()
+        let num = this.state.people[1].id;
+        let count = 0;
+        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+            if(this.state.taskAssigned[i].personId === num){
+                console.log(count++)
+                console.log(this.state.tasks[this.state.taskAssigned[i].taskId].name)
+                console.log(this.state.tasks[this.state.taskAssigned[i].taskId].description)
+                // this.state.taskAssigned[i].personId;
+                // console.log(this.state.tasks[i].name)
+                // console.log(this.state.tasks[i].description)
+            } else {
+                continue
+            }
         }
+        console.log(count)
     }
     
     render(){

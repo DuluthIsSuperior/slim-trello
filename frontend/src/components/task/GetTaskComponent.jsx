@@ -15,7 +15,7 @@ class GetTaskComponent extends Component {
     }
 
     componentDidMount() {
-        this.refresTaskRegistry();
+        this.refreshTaskRegistry();
     }
 
     refreshTaskRegistry() {
@@ -31,7 +31,7 @@ class GetTaskComponent extends Component {
 
     deleteTaskClicked(id, name, description){
         console.log('Delete Task Clicked')
-        taskDataService.deleteTask(id)
+        taskService.deleteTask(id)
         .then(
             response => {
                 this.setState({message: `Deleted Task: ${name} ${description}`})
@@ -43,7 +43,7 @@ class GetTaskComponent extends Component {
 
         updateTaskClicked(id, name){
             console.log('Update Task Clicked')
-            this.props.history.push(`/Task/${id}/${name}`)
+            this.props.history.push(`/task/${id}/${name}`)
         }
 
         addTaskClicked(){
@@ -74,8 +74,8 @@ class GetTaskComponent extends Component {
                                     tasks =>
                                     <tr style={{textAlign: "center"}} key={tasks.id}>
                                         <td>{tasks.id}</td>
-                                        <td>{tasks.name}</td>
-                                        <td>{tasks.description}</td>
+                                        <td><strong>{tasks.name}</strong></td>
+                                        <td><em>{tasks.description}</em></td>
                                         <td><button className="btn btn-dark" onClick={() => this.deleteTaskClicked(tasks.id, tasks.name, tasks.description)}>Delete</button></td>
                                         <td><button className="btn btn-info" onClick={() => this.updateTaskClicked(tasks.id, tasks.name)}>Update</button></td>
                                     </tr>
