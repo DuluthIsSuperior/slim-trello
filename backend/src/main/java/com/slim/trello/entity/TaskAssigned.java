@@ -16,6 +16,9 @@ public class TaskAssigned {
     @Column(name = "task_id") //This will map the taskId field to the column named task_id in the table.
     private int taskId;
 
+    @Column(name = "completed") //This will map the taskId field to the column named task_id in the table.
+    private boolean completed;
+
     //getter/setters
     public int getId() {
         return id;
@@ -41,12 +44,21 @@ public class TaskAssigned {
         this.taskId = taskId;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     //ToString Method
     @Override
     public String toString() {
         return "TaskAssigned{" +
                 "personId=" + personId +
                 ", taskId='" + taskId + '\'' +
+                ", completed='" + completed + '\'' +
                 '}';
     }
 }

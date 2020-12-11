@@ -46,6 +46,12 @@ CREATE TABLE tasks_assigned(
 	id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	person_id INT NOT NULL,
     task_id INT NOT NULL,
+    completed TINYINT NOT NULL,	-- 0 = false, everything else is true
     CONSTRAINT fk_person FOREIGN KEY (person_id) REFERENCES people(id),
     CONSTRAINT fk_task FOREIGN KEY (task_id) REFERENCES tasks(id)
 ) AUTO_INCREMENT = 1;
+
+INSERT INTO tasks_assigned(person_id, task_id, completed)
+VALUES(1, 1, 0), (1, 3, 1), (2, 2, 1);
+
+-- SELECT * FROM people A LEFT OUTER JOIN (SELECT person_id AS id, task_id FROM tasks_assigned) B ON A.id = B.id WHERE task_id IS NOT NULL; 
