@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 
 class TrelloComponent extends Component {
@@ -8,14 +9,15 @@ class TrelloComponent extends Component {
             lastName: "",
             persons: []
         }
-    this.refreshTasksRegistry = this.refreshTasksRegistry.bind(this)
-    this.deleteTaskClicked = this.deleteTasksClicked.bind(this)
+        console.log(props);
+    // this.refreshTasksRegistry = this.refreshTasksRegistry.bind(this)
+    // this.deleteTaskClicked = this.deleteTasksClicked.bind(this)
     this.updateTasksClicked = this.updateTasksClicked.bind(this)
-    this.addTaskClicked = this.addTaskClicked.bind(this)
+    // this.addTaskClicked = this.addTaskClicked.bind(this)
     }
 
     componentDidMount(){
-        this.refreshTasksRegistry();
+        // this.refreshTasksRegistry();
     }
 
     // refreshTasksRegistry() {
@@ -66,10 +68,7 @@ class TrelloComponent extends Component {
                                         <tr style={{textAlign: "center"}}>
                                             <td></td>
                                             <td></td>
-                                            {/* <td>{}</td>
-                                            //user.tasksAssigned
-                                            <td><button className="btn btn-dark" onClick={() => this.deleteTasksClicked(tasks.id, tasks.firstName, tasks.lastName)}>-</button></td>
-                                            <td><button className="btn btn-info" onClick={() => this.updateTasksClicked(tasks.id, tasks.jobTitle)}>Update</button></td> */}
+                                            <td></td>
                                         </tr>
                                 }
                             </tbody>
@@ -77,7 +76,7 @@ class TrelloComponent extends Component {
                         <div className="row">
                             <br />
                             <br/>
-                            <button className="btn btn-success">Add Tasks</button>
+                            <Link to="/TaskList"><button className="btn btn-success">Add Tasks</button></Link>
                             <br/>
                             <br/>
                         </div>

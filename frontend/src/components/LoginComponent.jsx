@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+// import { navigate } from "@reach/router";
 import loginService from '../service/loginService';
+
 
 class LoginComponent extends Component{
     constructor(props){
@@ -7,20 +9,18 @@ class LoginComponent extends Component{
 
         this.state={
             //use lastName to iterate through the login
-
             id: 0,
+            firstName: "",
             lastName: "",
             login: []
         }
-
-        this.getLoginData=this.getLoginData.bind(this)
-        this.getUserData=this.getUserData.bind(this)
+        this.handleChange = this.handleChange.bind(this);
+        this.getLoginData = this.getLoginData.bind(this);
+        this.getUserData = this.getUserData.bind(this);
     }
 
-    //setState
-
     componentDidMount(){
-        this.getLoginData()
+      this.getLoginData()
     }
 
     getLoginData(){
@@ -33,32 +33,22 @@ class LoginComponent extends Component{
 
     getUserData(event){
         event.preventDefault()
-        // console.log(this.state.login);
-        // console.log(this.state.login[1]);
-        // console.log(this.state.login[1].id);
-        // console.log(this.state.login[2].id);
-        // console.log(this.state.login[3].id);
-        for(var i =0; i <= this.state.login.length - 1; i++){
-            if (this.state.lastName !== this.state.login[i].lastName){
-                continue;
-            } 
-            else if (this.state.lastName === this.state.login[i].lastName){
-                this.setState({
-                    id: this.state.login[i].id
-                })
-                navigate(`/trello/:id`);
-                return navigate(`/trello/:id`);
-            }
-            
+        for(var i =0; i <= this.state.login.length - 1; i++) {
+          let {id, firstName, lastName} = this.state.login[i];
+          if (this.state.firstName === firstName && this.state.lastName === lastName) {
+              // this.props.history.push('/assignPractice');
+              this.props.history.push('/trello/' + id);
+              return;
+          } 
         }
-        console.log(false);
+        alert("Invalid log in");
     }
 
     handleChange = (event) =>{
-            let nam = event.target.name;
-            let val = event.target.value;
-            this.setState({[nam]: val});
-        }
+        let nam = event.target.name;
+        let val = event.target.value;
+        this.setState({[nam]: val});
+    }
 
     render(){
         return(
@@ -66,15 +56,10 @@ class LoginComponent extends Component{
                 <h1>Login to Trello-Lite</h1>
                 <form>
                     <div>
+                        <label>Enter First Name</label>
+                        <input type="text" name="firstName" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange} required/><br/>
                         <label>Enter Last Name</label>
-                        <input 
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        value={this.state.lastName} 
-                        onChange={this.handleChange} 
-                        required
-                        />
+                        <input type="text" name="lastName" placeholder="Last Name" value={this.state.lastName} onChange={this.handleChange} required/>
                     </div>
                     <div>
                     <button onClick={this.getUserData} type="submit" variant="contained" color="primary">Submit</button>
