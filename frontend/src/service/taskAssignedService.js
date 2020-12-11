@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class taskServiceAssigned{
+class taskAssignedService {
     retrieveAllTaskAssigned() {
       return axios.get(`http://localhost:8080/retrieveAllTaskAssigned`);
     }
@@ -8,8 +8,9 @@ class taskServiceAssigned{
     addTaskAssigned() {
       return axios.post(`http://localhost:8080/addTaskAssigned`);
     }
+
     updateTaskAssigned(taskAssigned){
-            return axios.put(`http://localhost:8080/updateTaskAssigned`, taskAssigned);
+      return axios.put(`http://localhost:8080/updateTaskAssigned`, taskAssigned);
     }
 
     deleteTaskAssigned(id) {
@@ -17,4 +18,4 @@ class taskServiceAssigned{
     }
 }
 
-export default new taskServiceAssigned();
+export default new taskAssignedService();

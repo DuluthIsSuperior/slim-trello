@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import taskAssignedService from '../service/taskAssignedService'
-import loginService from '../service/loginService'
-import taskService from '../service/taskService'
+import React, { Component } from 'react';
+import taskAssignedService from '../service/taskAssignedService';
+import loginService from '../service/loginService';
+import taskService from '../service/taskService';
 
 class Dashboard extends Component {
     constructor (props){
@@ -65,44 +65,78 @@ class Dashboard extends Component {
         )
     }
 
+    // find a person that does not have a task
     findPersonClicked(event){
-        event.preventDefault()
-        let num = 0;
-        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
-            if(this.state.taskAssigned[i].personId === this.state.people[0].id){
-                num++
-            } else {
-                continue
+        event.preventDefault();
+        for (var i = 0; i < this.state.people.length; i++) {
+          let taskFound = false;
+          let person = this.state.people[i];
+          for (var j = 0; j < this.state.taskAssigned.length; i++) {
+            if (this.state.taskAssigned[j].personId === this.state.people[i].id) {
+              taskFound = true;
+              break;
             }
+          }
+          if (!taskFound) {
+            console.log(person);
+            this.setState({personFound: person});
+            break;
+          }
         }
-        console.log(num)
-        console.log(this.state.people[0].firstName + " " + this.state.people[0].lastName + " - " + this.state.people[0].jobTitle)
+        // let num = 0;
+        // console.log(this.state.taskAssigned);
+        // for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+        //     if(this.state.taskAssigned[i].personId === this.state.people[0].id){
+        //         num++
+        //     } else {
+        //         continue
+        //     }
+        // }
+        // console.log(num)
+        // console.log(this.state.people[0].firstName + " " + this.state.people[0].lastName + " - " + this.state.people[0].jobTitle)
     }
 
     findTaskClicked(event){ 
-        event.preventDefault()
-        let num2 = 0;
-        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
-            if(this.state.taskAssigned[i].taskId === this.state.tasks[1].id){
-                num2++
-            } else {
-                continue
-            }
+        event.preventDefault();
+        let personFound = this.state.personFound;
+        if (personFound === undefined) {
+          alert("No person without a task found");
+          return;
         }
-        console.log(num2)
-        console.log(this.state.tasks[1].name + " : " + this.state.tasks[1].description)
+        console.log(this.state.tasks[0]);
+        this.setState({taskFound: this.state.tasks[0]});
+        // let num2 = 0;
+        // for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+        //     if(this.state.taskAssigned[i].taskId === this.state.tasks[1].id){
+        //         num2++
+        //     } else {
+        //         continue
+        //     }
+        // }
+        // console.log(num2)
+        // console.log(this.state.tasks[1].name + " : " + this.state.tasks[1].description)
         
     }
 
     assignTaskClicked(event){ 
-        event.preventDefault()
-        let perId = this.state.people[1].id;
-        
-        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
-            if (this.state.taskAssigned[1].personId){
-
-            }
+        event.preventDefault();
+        if (this.state.taskFound === undefined) {
+          alert("No task for a person set");
+          return;
         }
+        let assignment = {
+          "personId": this.state.personFound.id,
+          "taskId": this.state.tasks[0].id
+        };
+        taskAssignedService.updateTaskAssigned(assignment);
+        this.getTaskAssignedData();
+        // let perId = this.state.people[1].id;
+        
+        // for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+        //     if (this.state.taskAssigned[1].personId){
+
+        //     }
+        // }
         // for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
         //     if(this.state.taskAssigned[i].taskId === this.state.tasks[1].id){
         //         perId++
@@ -110,27 +144,33 @@ class Dashboard extends Component {
         //         continue
         //     }
         // }
-        console.log(perId)
-        console.log(this.state.taskAssigned[2])
+        // console.log(perId)
+        // console.log(this.state.taskAssigned[2])
     }
 
     mapTaskClicked(event){
-        event.preventDefault()
-        let num = this.state.people[1].id;
-        let count = 0;
-        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
-            if(this.state.taskAssigned[i].personId === num){
-                console.log(count++)
-                console.log(this.state.tasks[this.state.taskAssigned[i].taskId].name)
-                console.log(this.state.tasks[this.state.taskAssigned[i].taskId].description)
-                // this.state.taskAssigned[i].personId;
-                // console.log(this.state.tasks[i].name)
-                // console.log(this.state.tasks[i].description)
-            } else {
-                continue
-            }
-        }
-        console.log(count)
+        event.preventDefault();
+        this.state.taskAssigned.forEach(assignment => {
+          let person = this.state.people[assignment.personId - 1];
+          let task = this.state.tasks[assignment.taskId - 1];
+          console.log(person);
+          console.log(task);
+        });
+        // let num = this.state.people[1].id;
+        // let count = 0;
+        // for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+        //     if(this.state.taskAssigned[i].personId === num){
+        //         console.log(count++)
+        //         console.log(this.state.tasks[this.state.taskAssigned[i].taskId].name)
+        //         console.log(this.state.tasks[this.state.taskAssigned[i].taskId].description)
+        //         // this.state.taskAssigned[i].personId;
+        //         // console.log(this.state.tasks[i].name)
+        //         // console.log(this.state.tasks[i].description)
+        //     } else {
+        //         continue
+        //     }
+        // }
+        // console.log(count)
     }
 
     taskDoneClicked(event){
