@@ -23,6 +23,11 @@ public class TaskController {
         return myDAO.findAll();
     }
 
+    @GetMapping("/retrieveTask/{Id}")
+    public Task getTask(@PathVariable int Id) {
+        return myDAO.findByID(Id);
+    }
+
     @PostMapping("/addTask")
     public Task addTask(@RequestBody Task theTask){
         theTask.setId(0);
