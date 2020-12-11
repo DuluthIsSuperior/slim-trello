@@ -46,6 +46,7 @@ class Dashboard extends Component {
       for (let i = 0; i < assignments.length; i++) {
         taskService.retrieveTask(assignments[i].taskId).then(response => {
           people[personIndex].tasks[i] = response.data;
+          people[personIndex].tasks[i].completed = assignments[i].completed;
           this.cement(people);  // each person will tell the server that they have fully received their tasks
         });
       }
@@ -67,6 +68,7 @@ class Dashboard extends Component {
 
     
     render(){
+      // console.log(this.state.people);
       const renderTasks = (person) => {
         if (person.tasks !== undefined) {
           let tasks = "";
@@ -88,7 +90,29 @@ class Dashboard extends Component {
         } else {
           return <td>?</td>
         }
-      }
+      };
+      const renderStatus = (person) => {
+        if (person.tasks !== undefined) {
+          let tasks = "";
+          person.tasks.forEach(task => {
+            tasks = tasks + task.completed + "\n";
+          });
+
+          const App = () => // renders each line as a span with a line break
+          tasks.split('\n').map((value, index) => {
+            return (
+              <span key={index}>
+                {value}
+                <br />
+              </span>
+            );
+          });
+
+          return <td>{App()}</td>
+        } else {
+          return <td>?</td>
+        }
+      };
       return(
           <div className="container">
               <h1 style={{textAlign:"center"}}>Trello-Lite</h1>
@@ -117,6 +141,7 @@ class Dashboard extends Component {
                                         <br />
                                       </td>
                                       {renderTasks(person)}
+                                      {renderStatus(person)}
                                       {/* <td>{}</td>
                                       //user.tasksAssigned
                                       <td><button className="btn btn-dark" onClick={() => this.deleteTasksClicked(tasks.id, tasks.firstName, tasks.lastName)}>-</button></td>
