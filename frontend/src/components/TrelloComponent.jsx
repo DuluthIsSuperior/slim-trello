@@ -17,7 +17,7 @@ class TrelloComponent extends Component {
         }
     this.getUserRegistry = this.getUserRegistry.bind(this)
     this.showTasks = this.showTasks.bind(this)
-    this.finishTasks = this.finishTasks.bind(this)
+    // this.finishTasks = this.finishTasks.bind(this)
     this.getTaskData = this.getTaskData.bind(this)
     this.getTaskAssignedData = this.getTaskAssignedData.bind(this)
     // console.log(this.props.match.params.id)
@@ -41,9 +41,9 @@ class TrelloComponent extends Component {
                     if (person == response.data[i].id){
                         // console.log(true)
                         this.setState({
-                            firstName: response.data[person].firstName,
-                            lastName: response.data[person].lastName,
-                            jobTitle: response.data[person].jobTitle                            
+                            firstName: response.data[i].firstName,
+                            lastName: response.data[i].lastName,
+                            jobTitle: response.data[i].jobTitle                            
                             })
                         } else {
                             continue
