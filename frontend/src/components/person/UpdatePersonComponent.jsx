@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field } from 'formik'
-import taskService from '../../service/taskService'
+import loginService from '../../service/loginService'
 
-class UpdateTaskComponent extends Component {
+class UpdatePersonComponent extends Component {
     constructor(props){
         super(props)
         this.state = {
             id: this.props.match.params.id,
-            name: '',
-            description: ''
+            jobTitle: this.props.match.params.jobTitle,
+            firstName: '',
+            lastName: ''
         }
         this.onSubmit = this.onSubmit.bind(this)
     }
 
     onSubmit(values) {
-        let task = {
+        let person = {
             id: this.state.id,
-            name: values.name,
-            description: values.description
+            jobTitle: values.jobTitle,
+            firstName: values.firstName,
+            lastName: values.lastName,
         }
 
-        taskService.updateTasks(task)
+        loginService.updatePerson(person)
         .then(() => this.props.history.push('/dashboard`'))
     }
 
     render() {
-        let {id, name, description} = this.state
+        let {id, jobTitle, firstName, lastName} = this.state
         return(
             <div>
                 <div className="jumbotron" style={{backgroundColor: "lightblue"}}>
@@ -33,7 +35,7 @@ class UpdateTaskComponent extends Component {
                 </div>
                 <div className="container">
                 <Formik
-                        initialValues={{id, name, description}}
+                        initialValues={{id, jobTitle, firstName, lastName}}
                         onSubmit={this.onSubmit}
                         enableReinitialize={true}
                     >{
@@ -44,12 +46,16 @@ class UpdateTaskComponent extends Component {
                             <Field className="form-control" type="text" name="id" disabled />
                         </fieldset>
                         <fieldset>
-                            <label>Name</label>
-                            <Field className="form-control" type="text" name="name" />
+                            <label>First Name</label>
+                            <Field className="form-control" type="text" name="firstName" />
                         </fieldset>
                         <fieldset>
-                            <label>Description</label>
-                            <Field className="form-control" type="text" name="description" />
+                            <label>Last Name</label>
+                            <Field className="form-control" type="text" name="lastName" />
+                        </fieldset>
+                        <fieldset>
+                            <label>Job Title</label>
+                            <Field className="form-control" type="text" name="jobTitle" />
                         </fieldset>
                         <button className="btn btn-success" type="submit">Save</button>
                         </Form>
@@ -62,4 +68,4 @@ class UpdateTaskComponent extends Component {
     }
 }
 
-export default UpdateTaskComponent
+export default UpdatePersonComponent

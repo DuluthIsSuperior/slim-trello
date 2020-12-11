@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import peopleervice from '../../service/peopleervice'
+import loginService from '../../service/loginService'
 
 
 class GetTaskComponent extends Component {
@@ -59,7 +59,7 @@ class GetTaskComponent extends Component {
                                 this.state.people.map (
                                     people =>
                                     <tr style={{textAlign: "center"}} key={people.id}>
-                                        <td>{persons.id}</td>
+                                        <td>{people.id}</td>
                                         <td><strong>{people.firstName}</strong></td>
                                         <td><strong> {people.lastName}</strong></td>
                                         <td>{people.jobTitle}</td>
@@ -72,7 +72,7 @@ class GetTaskComponent extends Component {
                     </table>
                     <div className="row">
                         <br />
-                        <button className="btn btn-success" onClick={this.addPersonClicked}>Add task</button>
+                        <button className="btn btn-success" onClick={this.addPeopleClicked}>Add Person</button>
                         <br/>
                         <br/>
                     </div>
