@@ -9,8 +9,8 @@ class taskAssignedService {
       return axios.get(`http://localhost:8080/retrieveTasksAssignedByPerson/${id}`);
     }
 
-    addTaskAssigned() {
-      return axios.post(`http://localhost:8080/addTaskAssigned`);
+    addTaskAssigned(task) {
+      return axios.post(`http://localhost:8080/addTaskAssigned`, task);
     }
 
     updateTaskAssigned(taskAssigned){

@@ -30,15 +30,13 @@ public class TaskAssignedController {
     public List<TaskAssigned> findAll() {
         return myDAO.findAll();
     }
-
-<<<<<<< HEAD
-=======
+    
     @GetMapping("/retrieveTasksAssignedByPerson/{id}")
     public List<TaskAssigned> getTasksAssignedByPerson(@PathVariable int id) {
         return ((TaskAssignedDAO) myDAO).findByPersonID(id);
     }
 
->>>>>>> main
+
     @PostMapping("/addTaskAssigned")
     public String addTaskAssigned(@RequestBody TaskAssigned theTaskAssigned,int personId,
                                          int taskId){
