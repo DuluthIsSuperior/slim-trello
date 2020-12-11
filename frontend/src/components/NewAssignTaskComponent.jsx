@@ -37,7 +37,10 @@ class NewAssignTaskComponent extends Component {
     }
 
     addTaskClicked(){
+<<<<<<< HEAD
         //if (this.state.firstName === firstName && this.state.lastName === lastName)
+=======
+>>>>>>> main
         console.log('Add Task Clicked')
         this.props.history.push(`/theTask/-1`)
     }

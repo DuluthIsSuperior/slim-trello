@@ -8,11 +8,27 @@ CREATE TABLE people(
 	id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(20) NOT NULL,
     last_name VARCHAR(20) NOT NULL,
+    password VARCHAR(15) NOT NULL,
     job_title VARCHAR(30) NOT NULL
 ) AUTO_INCREMENT = 1;
 
-INSERT INTO people(first_name, last_name, job_title)
-VALUES('Adam', 'Smith', 'Admin'), ('Jane', 'Doe', 'Developer'), ('Walter', 'White', 'Distributor');
+INSERT INTO people(first_name, last_name, password, job_title)
+VALUES('Adam', 'Smith', 'admin', 'Admin'), ('Jane', 'Doe', 'janeDoe', 'Developer'), ('Walter', 'White', 'walterWhite', 'Distributor');
+
+DROP FUNCTION IF EXISTS validateUser;
+# delimiter command below prevents MySQL from interpreting each line of the function as its own query
+DELIMITER $$
+CREATE FUNCTION validateUser(f_name VARCHAR(20), l_name VARCHAR(20), pwd VARCHAR(15))
+RETURNS INTEGER
+READS SQL DATA
+BEGIN
+	DECLARE c INT;
+    SELECT COUNT(*) INTO c FROM people WHERE first_name = f_name AND last_name = l_name AND password = pwd;
+    # if COUNT(*) returns 0, invalid user, if COUNT(*) returns 1, valid user
+	RETURN c;
+END$$
+DELIMITER ;
+# above delimiter command returns the styling to normal
 
 DROP TABLE IF EXISTS tasks;
 CREATE TABLE tasks(
@@ -20,6 +36,7 @@ CREATE TABLE tasks(
     name VARCHAR(30) NOT NULL,
     description VARCHAR(100)
 ) AUTO_INCREMENT = 1;
+
 
 INSERT INTO tasks(name, description)
 VALUES('Add Title', 'Add title to webpage'), ('Install ReactJS', 'Install ReactJS source files to webpage'), 
