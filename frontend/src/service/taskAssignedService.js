@@ -5,6 +5,10 @@ class taskAssignedService {
       return axios.get(`http://localhost:8080/retrieveAllTaskAssigned`);
     }
 
+    retrieveTasksAssignedByPerson(id) {
+      return axios.get(`http://localhost:8080/retrieveTasksAssignedByPerson/${id}`);
+    }
+
     addTaskAssigned() {
       return axios.post(`http://localhost:8080/addTaskAssigned`);
     }

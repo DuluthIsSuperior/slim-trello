@@ -9,6 +9,7 @@ class TrelloComponent extends Component {
             lastName: "",
             persons: []
         }
+        console.log(props);
     // this.refreshTasksRegistry = this.refreshTasksRegistry.bind(this)
     // this.deleteTaskClicked = this.deleteTasksClicked.bind(this)
     this.updateTasksClicked = this.updateTasksClicked.bind(this)
