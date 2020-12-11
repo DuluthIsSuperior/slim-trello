@@ -16,6 +16,8 @@ class Dashboard extends Component {
         this.getTaskAssignedData = this.getTaskAssignedData.bind(this)
         this.findPersonClicked = this.findPersonClicked.bind(this)
         this.findTaskClicked = this.findTaskClicked.bind(this)
+        this.assignTaskClicked = this.assignTaskClicked.bind(this)
+        this.mapTaskClicked = this.mapTaskClicked.bind(this)
         // this.refreshTaskAssignRegistry = this.refreshTaskAssignRegistry.bind(this)
         // this.refreshTaskRegistry = this.refreshTaskRegistry.bind(this)
         // this.refreshPeopleRegistry = this.refreshPeopleRegistry.bind(this)
@@ -63,12 +65,6 @@ class Dashboard extends Component {
         )
     }
 
-    // handleChange = (event) =>{
-    //     let nam = event.target.name;
-    //     let val = event.target.value;
-    //     this.setState({[nam]: val});
-    // }
-
     findPersonClicked(event){
         event.preventDefault()
         let num = 0;
@@ -78,24 +74,72 @@ class Dashboard extends Component {
             } else {
                 continue
             }
-            console.log(num)
         }
-        
+        console.log(num)
+        console.log(this.state.people[0].firstName + " " + this.state.people[0].lastName + " - " + this.state.people[0].jobTitle)
     }
 
     findTaskClicked(event){ 
         event.preventDefault()
+        let num2 = 0;
         for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
-            if(this.state.taskAssigned[i].taskId === this.state.tasks[i].id){
-                console.log(true)
-            } else if (this.state.taskAssigned[i].personId !== this.state.tasks[i].id){
-                console.log(false)
+            if(this.state.taskAssigned[i].taskId === this.state.tasks[1].id){
+                num2++
+            } else {
+                continue
             }
         }
-        console.log("done")
+        console.log(num2)
+        console.log(this.state.tasks[1].name + " : " + this.state.tasks[1].description)
+        
     }
 
+    assignTaskClicked(event){ 
+        event.preventDefault()
+        let perId = this.state.people[1].id;
+        
+        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+            if (this.state.taskAssigned[1].personId){
 
+            }
+        }
+        // for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+        //     if(this.state.taskAssigned[i].taskId === this.state.tasks[1].id){
+        //         perId++
+        //     } else {
+        //         continue
+        //     }
+        // }
+        console.log(perId)
+        console.log(this.state.taskAssigned[2])
+    }
+
+    mapTaskClicked(event){
+        event.preventDefault()
+        let num = this.state.people[1].id;
+        let count = 0;
+        for(var i =0; i <= this.state.taskAssigned.length - 1; i++){
+            if(this.state.taskAssigned[i].personId === num){
+                console.log(count++)
+                console.log(this.state.tasks[this.state.taskAssigned[i].taskId].name)
+                console.log(this.state.tasks[this.state.taskAssigned[i].taskId].description)
+                // this.state.taskAssigned[i].personId;
+                // console.log(this.state.tasks[i].name)
+                // console.log(this.state.tasks[i].description)
+            } else {
+                continue
+            }
+        }
+        console.log(count)
+    }
+
+    handleSubmit(){
+        let taskAssign = {
+            id: this.state.id,
+            taskId: this.state.taskId,
+            personId: this.state.personId,
+        }
+    }
     
     render(){
         return(
@@ -110,6 +154,12 @@ class Dashboard extends Component {
                         <br />
                         <br/>
                         <button className="btn btn-success" onClick={this.findTaskClicked}>Find Task</button>
+                        <br/>
+                        <br/>
+                        <button className="btn btn-success" onClick={this.assignTaskClicked}>Assign Task</button>
+                        <br/>
+                        <br/>
+                        <button className="btn btn-success" onClick={this.mapTaskClicked}>Map Task</button>
                         <br/>
                         <br/>
                     </div>
